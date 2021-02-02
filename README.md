@@ -8,6 +8,11 @@
 - git  http://ceshiren.com/t/topic/7405
 - 参考链接
  - 命名规范： https://zh-google-styleguide.readthedocs.io/en/latest/google-python-styleguide/python_style_rules/#id16
+- windows 上读取yml文件要加encoding='utf-8'
+ def test_yamlData():
+    with open("../testDatas/yamlData.yml",encoding='utf-8') as f:
+        datas=yaml.safe_load(f)
+        print(datas)
 
 ##代码---本地git仓库---远程git仓库
 - 安装git bash
