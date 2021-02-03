@@ -3,6 +3,7 @@ import pytest
 import sys
 #如果要使用命令行执行，因为calculatorcode.calculator 跟test_calc不在同一个文件夹，不能直接使用命令行。需要append上一个路径来执行
 import yaml
+from decimal import *
 
 sys.path.append('..')
 print(sys.path)
@@ -33,8 +34,8 @@ class TestCalculator:
     @pytest.mark.parametrize("a,b,result",datas[0],ids=datas[1])
     def test_add(self,a,b,result):
         print(f"a={a},b={b},result={result}")
-        assert result ==self.calc.add(a,b)
-
+        assert result ==round(self.calc.add(a,b),2)
+        # assert result == self.calc.add(a,b)
     #for循环
 
     # def test_add1(self):
@@ -46,8 +47,13 @@ class TestCalculator:
     #@pytest.mark.login
     @pytest.mark.parametrize("a,b,result",datas[2],ids=datas[1])
     def test_div(self,a,b,result):
-        print(f"a={a},b={b},result={result}")
-        assert result == self.calc.div(a,b)
+        try:
+            print(f"a={a},b={b},result={result}")
+            assert result== round(self.calc.div(a,b),2)
+        except ZeroDivisionError as e:
+            print(e,"除数不能为0！")
+
+
 
 
 
