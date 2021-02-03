@@ -13,6 +13,33 @@
     with open("../testDatas/yamlData.yml",encoding='utf-8') as f:
         datas=yaml.safe_load(f)
         print(datas)
+  
+- ids 给结果重命名 ids=['','',''']
+- 运行文件不在同一个文件夹下：
+  sys.path.append('..')
+  print(sys.path)
+  
+- yaml yaml.safe_load(open("../testDatas/yamlData.yml", encoding='utf-8'))
+  或者 with open("../testDatas/yamlData.yml", encoding='utf-8') as f:
+       dataf=yaml.safe_load(f)
+  windows 需要加encoding='utf-8'
+  
+- round(a,2) 数值a如果是小数，取小数后2位
+- with pytest.raises(ZeroDivisionError):
+  相当于 try: 
+        except
+  
+- pytest_fixture() 的2钟用法,@pytest.fixture()
+def login(): 
+  - def search(login):
+  - @pytest.mark.usefixtures("login") 
+    def search()
+  - 多个fixture，由内向外执行
+  - fixture可以调用另一个fixture
+  - yield 相当于return 在执行用例完成后返回yield信息  
+       
+- --setup-show 查看执行过程  e.g pytest test_a.py --setup-show
+
 
 ##代码---本地git仓库---远程git仓库
 - 安装git bash
@@ -28,6 +55,8 @@
 - gitee
 
 ##作业地址：
+- https://github.com/jimanman09/pythonProjectdask1/
+
 
 
 

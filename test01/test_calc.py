@@ -13,8 +13,18 @@ from calculatorcode.calculator import Calculator
 
 def get_datas():
     with open("../testDatas/yamlData.yml", encoding='utf-8') as f:
-        datas = yaml.safe_load(f)
-        return (datas['add']['datas'],datas['add']['ids'],datas['add']['datad'])
+        dataf = yaml.safe_load(f)
+        print("dataf",dataf)
+        data_int=dataf['add']['int']['datas']
+        data_int_ids=dataf['add']['int']['ids']
+        data_float = dataf['add']['float']['datas']
+        data_float_ids = dataf['add']['float']['ids']
+        data_div_nonzero = dataf['div']['nonzero']['datas']
+        data_div_nonzero_ids = dataf['div']['nonzero']['ids']
+        data_div_zero = dataf['div']['zero']['datas']
+        data_div_zero_ids = dataf['div']['zero']['ids']
+        return (data_int,data_int_ids,data_float,data_float_ids,
+                data_div_nonzero,data_div_nonzero_ids,data_div_zero,data_div_zero_ids)
 
 
 class TestCalculator:
@@ -27,15 +37,22 @@ class TestCalculator:
     def teardown_class(self):
         print("结束计算")
 
-    datas: list = get_datas()
+    data1: list = get_datas()
 
     # @pytest.mark.search
     #参数化
-    @pytest.mark.parametrize("a,b,result",datas[0],ids=datas[1])
-    def test_add(self,a,b,result):
+    @pytest.mark.parametrize("a,b,result",data1[0],ids=data1[1])
+    def test_add_int(self,a,b,result):
         print(f"a={a},b={b},result={result}")
-        assert result ==round(self.calc.add(a,b),2)
+        assert result ==self.calc.add(a,b)
         # assert result == self.calc.add(a,b)
+
+    @pytest.mark.parametrize("a,b,result", data1[2], ids=data1[3])
+    def test_add_float(self, a, b, result):
+        print(f"a={a},b={b},result={result}")
+        assert result == round(self.calc.add(a, b),2)
+
+
     #for循环
 
     # def test_add1(self):
@@ -45,13 +62,12 @@ class TestCalculator:
     #         assert data[2] == self.calc.add(data[0], data[1])
     #todo:
     #@pytest.mark.login
-    @pytest.mark.parametrize("a,b,result",datas[2],ids=datas[1])
+    @pytest.mark.parametrize("a,b,result",data1[6],ids=data1[7])
     def test_div(self,a,b,result):
-        try:
+        with pytest.raises(ZeroDivisionError):
             print(f"a={a},b={b},result={result}")
             assert result== round(self.calc.div(a,b),2)
-        except ZeroDivisionError as e:
-            print(e,"除数不能为0！")
+
 
 
 
