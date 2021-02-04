@@ -2,28 +2,25 @@
 # 开发人员: PC
 # 开发时间: 2021/2/315:31
 # 开发工具: PyCharm
-
-
+from datetime import *
+import time
 import pytest
 
-
-@pytest.fixture()
+@pytest.fixture(scope='module')
 def login():
-    print('登录成功：')
-    yield
-    print("登出")
+    print('开始测试：')
+    day=date.today()
+    yield day
+
+    print("结束")
 
 
-@pytest.fixture()
-def get_username(login):
-    uname="测试认"
-    print(uname)
-    return uname
+# @pytest.mark.usefixtures("get_username")
+def test_search(login):
+    print('今天是-')
+    print(login)
 
 
-@pytest.mark.usefixtures("get_username")
-def test_search():
-    print('搜索百度')
 
-def test_cart():
+def test_cart(login):
     print('添加到购物车')
