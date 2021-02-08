@@ -1,0 +1,10 @@
+README.md
+setup.py
+test_hook01/__init__.py
+test_hook01.egg-info/PKG-INFO
+test_hook01.egg-info/SOURCES.txt
+test_hook01.egg-info/dependency_links.txt
+test_hook01.egg-info/entry_points.txt
+test_hook01.egg-info/not-zip-safe
+test_hook01.egg-info/requires.txt
+test_hook01.egg-info/top_level.txt
