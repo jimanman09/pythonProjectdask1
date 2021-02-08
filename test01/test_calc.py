@@ -74,7 +74,8 @@ class TestCalculator:
         print(f"a={r[0]},b={r[1]},result={r[2]}")
         assert r[2] ==get_instance.add(r[0],r[1])
         # assert result == self.calc.add(a,b)
-    @allure.title("相加_{get_dataf_with_fixture[0]_{get_dataf_with_fixture[1]}") #测试数据展示
+
+    @allure.title("相加_{get_dataf_with_fixture[0]}") #测试数据展示
     @allure.story("小数相加功能")
     def test_add_float(self,get_instance,get_dataf_with_fixture):
         rf = get_dataf_with_fixture
